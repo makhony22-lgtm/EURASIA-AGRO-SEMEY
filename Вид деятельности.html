@@ -35,12 +35,12 @@
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0.5rem 1rem 2rem;
+            padding: 1rem 2rem 1rem 1rem;
         }
 
         .logo {
@@ -52,6 +52,8 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .logo:hover {
@@ -83,6 +85,39 @@
         .nav-links a.active {
             color: #007549;
             background: rgba(0, 117, 73, 0.06);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 117, 73, 0.3);
+            color: #007549;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: rgba(0, 117, 73, 0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: #007549;
+            font-weight: 600;
         }
 
         .mobile-menu-btn {
@@ -117,11 +152,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
         }
 
         .hero-side:hover {
-            flex: 1.1;
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
         .hero-side::before {
@@ -133,12 +171,30 @@
             bottom: 0;
             background-size: cover;
             background-position: center;
-            transition: transform 0.5s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
         }
 
         .hero-side:hover::before {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .hero-side::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .hero-side:hover::after {
+            opacity: 1;
         }
 
         .hero-left::before {
@@ -155,11 +211,24 @@
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
             color: white;
             padding: 3rem;
             max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-side:hover .hero-content {
+            transform: translateY(-10px);
+        }
+
+        .hero-content h2 {
+            transition: all 0.3s ease;
+        }
+
+        .hero-side:hover .hero-content h2 {
+            transform: scale(1.05);
         }
 
         .hero-icon {
@@ -170,11 +239,14 @@
         }
 
         .hero-content h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             text-shadow: 0 4px 20px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
+            line-height: 1.2;
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .hero-content p {
@@ -196,6 +268,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            margin-top: 1rem;
         }
 
         .hero-btn:hover {
@@ -205,6 +278,11 @@
 
         .hero-right .hero-btn {
             color: #fcb714;
+        }
+
+        .hero-side:hover .hero-btn {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
 
         /* Detail Section */
@@ -493,8 +571,30 @@
                 min-height: auto;
             }
 
+            .hero-side:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .hero-side:hover::before {
+                transform: none;
+            }
+
+            .hero-side:hover .hero-content {
+                transform: none;
+            }
+
+            .hero-side:hover .hero-content h2 {
+                transform: none;
+            }
+
+            .hero-side:hover .hero-btn {
+                transform: none;
+            }
+
             .hero-content h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                line-height: 1.1;
             }
 
             .hero-content p {
@@ -572,7 +672,8 @@
             }
 
             .hero-content h2 {
-                font-size: 1.9rem;
+                font-size: 1.7rem;
+                line-height: 1.1;
             }
 
             .hero-content p {
@@ -666,43 +767,74 @@
                 gap: 2rem;
             }
         }
+
+.hero-icon img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+}
+@media (max-width: 640px) {
+    .hero-icon img {
+        width: 80px;
+        height: 80px;
+    }
+}
+.feature-icon-box img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
     </style>
 </head>
 <body>
     <!-- Header Navigation -->
     <header>
         <nav>
-            <a href="main.html" class="logo">EURASIA AGRO SEMEY</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="main.html">О компании</a></li>
-                <li><a href="ответственность.html">Ответственность</a></li>
-                <li><a href="Вид деятельности.html" class="active">Вид деятельности</a></li>
-                <li><a href="Новости.html">Новости</a></li>
-                <li><a href="Вакансии.html">Вакансии</a></li>
-                <li><a href="Контакты.html">Контакты</a></li>
-            </ul>
+            <a href="index.html" class="logo">EURASIA AGRO SEMEY</a>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">О компании</a></li>
+                    <li><a href="ответственность.html">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html" class="active">Вид деятельности</a></li>
+                    <li><a href="Новости.html">Новости</a></li>
+                    <li><a href="Вакансии.html">Вакансии</a></li>
+                    <li><a href="Контакты.html">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Split Hero Section -->
     <section class="split-hero">
-        <div class="hero-side hero-left">
+        <a href="#processing" class="hero-side hero-left">
             <div class="hero-content">
-                <span class="hero-icon">🏭</span>
-                <h2>Мясоперерабатывающий комплекс</h2>
+                <span class="hero-icon">
+    <img src="free-animated-icon-factory-18999328.gif" alt="Завод">
+</span>
+
+                <h2>Мясоперерабатывающий<br>комплекс</h2>
                 <p>Современное производство с полным циклом переработки мяса</p>
-                <a href="#processing" class="hero-btn">Подробнее</a>
+                <span class="hero-btn">Подробнее</span>
             </div>
-        </div>
-        <div class="hero-side hero-right">
+        </a>
+        <a href="#feedlot" class="hero-side hero-right">
             <div class="hero-content">
-                <span class="hero-icon">🐄</span>
+                <span class="hero-icon">
+    <img src="free-animated-icon-cow-12893178.gif" alt="КРС">
+</span>
+
                 <h2>Откормочная площадка</h2>
                 <p>Передовые технологии выращивания и откорма КРС</p>
-                <a href="#feedlot" class="hero-btn">Подробнее</a>
+                <span class="hero-btn">Подробнее</span>
             </div>
-        </div>
+        </a>
     </section>
 
     <!-- Detail Section -->
@@ -722,7 +854,10 @@
                     
                     <div class="detail-features">
                         <div class="feature-item">
-                            <div class="feature-icon-box">⚙️</div>
+                            <div class="feature-icon-box">
+    <img src="free-animated-icon-settings-8717906.gif" alt="Современное оборудование">
+</div>
+
                             <div class="feature-text">
                                 <h4>Современное оборудование</h4>
                                 <p>Производственные линии европейского производства для высокого качества продукции</p>
@@ -730,7 +865,10 @@
                         </div>
                         
                         <div class="feature-item">
-                            <div class="feature-icon-box">❄️</div>
+                            <div class="feature-icon-box">
+    <img src="free-animated-icon-cold-6455060.gif" alt="Холодильное хозяйство">
+</div>
+
                             <div class="feature-text">
                                 <h4>Холодильное хозяйство</h4>
                                 <p>Современные холодильные камеры для правильного хранения при оптимальной температуре</p>
@@ -738,12 +876,14 @@
                         </div>
                         
                         <div class="feature-item">
-                            <div class="feature-icon-box">✅</div>
-                            <div class="feature-text">
-                                <h4>Контроль качества</h4>
-                                <p>Многоступенчатый контроль на всех этапах — от сырья до готовой продукции</p>
-                            </div>
-                        </div>
+    <div class="feature-icon-box">
+        <img src="free-animated-icon-document-analysis-19013039.gif" alt="Контроль качества">
+    </div>
+    <div class="feature-text">
+        <h4>Контроль качества</h4>
+        <p>Многоступенчатый контроль на всех этапах — от сырья до готовой продукции</p>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -790,28 +930,6 @@
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number">2025</span>
-                <span class="stat-label">Год запуска</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Качество продукции</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Работа производства</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">500+</span>
-                <span class="stat-label">Рабочих мест</span>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -839,7 +957,7 @@
             <div class="footer-section">
                 <h3>Контакты</h3>
                 <p>БИН: 160740001659</p>
-                <p>село Чекоман, улица Индустриальная, 100</p>
+                <p>Семей, ул. Сеченова, 6</p>
                 <p>область Абай, Казахстан</p>
             </div>
         </div>
@@ -852,6 +970,19 @@
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function switchLanguage(lang) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            event.target.classList.add('active');
+            
+            // Здесь можно добавить логику переключения языка
+            console.log('Переключен язык на:', lang);
         }
 
         document.querySelectorAll('.nav-links a').forEach(link => {

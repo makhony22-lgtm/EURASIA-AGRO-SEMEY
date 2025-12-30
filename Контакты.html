@@ -45,12 +45,12 @@
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0.5rem 1rem 2rem;
+            padding: 1rem 2rem 1rem 1rem;
         }
 
         .logo {
@@ -62,6 +62,8 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .logo:hover {
@@ -97,6 +99,39 @@
 
         .nav-links a::after {
             display: none;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 117, 73, 0.3);
+            color: #007549;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: rgba(0, 117, 73, 0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: #007549;
+            font-weight: 600;
         }
 
         .mobile-menu-btn {
@@ -611,16 +646,22 @@
 <body>
     <header>
         <nav>
-            <a href="main.html" class="logo">EURASIA AGRO SEMEY</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="main.html">О компании</a></li>
-                <li><a href="ответственность.html">Ответственность</a></li>
-                <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                <li><a href="Новости.html">Новости</a></li>
-                <li><a href="Вакансии.html">Вакансии</a></li>
-                <li><a href="Контакты.html" class="active">Контакты</a></li>
-            </ul>
+            <a href="index.html" class="logo">EURASIA AGRO SEMEY</a>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">О компании</a></li>
+                    <li><a href="ответственность.html">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
+                    <li><a href="Новости.html">Новости</a></li>
+                    <li><a href="Вакансии.html">Вакансии</a></li>
+                    <li><a href="Контакты.html" class="active">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -641,9 +682,9 @@
                 <div class="info-card">
                     <div class="info-card-icon">📍</div>
                     <h3>Адрес</h3>
-                    <p class="contact-text">село Чекоман, улица Индустриальная, 100</p>
+                    <p class="contact-text">Семей, ул. Сеченова, 6</p>
                     <p class="contact-text">Абайская область, Казахстан</p>
-                    <p class="contact-text">071400</p>
+                    <p class="contact-text">071410</p>
                 </div>
 
                 <div class="info-card">
@@ -719,7 +760,7 @@
     <section class="map-section">
         <div class="map-container">
             <div class="map-placeholder">
-                [Карта: село Чекоман, улица Индустриальная, 100, Абайская область]
+                [Карта: Семей, ул. Сеченова, 6, Абайская область]
             </div>
         </div>
     </section>
@@ -779,7 +820,7 @@
             <div class="footer-section">
                 <h3>Контакты</h3>
                 <p>БИН: 160740001659</p>
-                <p>село Чекоман, улица Индустриальная, 100</p>
+                <p>Семей, ул. Сеченова, 6</p>
                 <p>область Абай, Казахстан</p>
             </div>
         </div>
@@ -792,6 +833,19 @@
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function switchLanguage(lang) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            event.target.classList.add('active');
+            
+            // Здесь можно добавить логику переключения языка
+            console.log('Переключен язык на:', lang);
         }
 
         // Form submission handler

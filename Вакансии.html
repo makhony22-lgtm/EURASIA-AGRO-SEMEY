@@ -40,12 +40,12 @@
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0.5rem 1rem 2rem;
+            padding: 1rem 2rem 1rem 1rem;
         }
 
         .logo {
@@ -57,6 +57,8 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .logo:hover {
@@ -92,6 +94,39 @@
 
         .nav-links a::after {
             display: none;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 117, 73, 0.3);
+            color: #007549;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: rgba(0, 117, 73, 0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: #007549;
+            font-weight: 600;
         }
 
         .mobile-menu-btn {
@@ -210,6 +245,124 @@
             background: #00a066;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 117, 73, 0.3);
+        }
+
+        /* Photo Gallery Section */
+        .photo-gallery {
+            max-width: 1400px;
+            margin: -1rem auto 4rem;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) {
+            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
+        }
+
+        .gallery-item:nth-child(2) {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+        }
+
+        .gallery-item:nth-child(3) {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
+            color: white;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .gallery-label {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-label {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         /* Vacancies Section */
@@ -507,6 +660,19 @@
                 padding: 2rem;
             }
 
+            .photo-gallery {
+                padding: 0 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .gallery-item {
+                height: 280px;
+            }
+
             .vacancies-section {
                 padding: 0 2rem 6rem;
             }
@@ -557,6 +723,29 @@
                 padding: 1.5rem;
             }
 
+            .photo-gallery {
+                padding: 0 1.5rem;
+                margin: -1rem auto 3rem;
+            }
+
+            .gallery-grid {
+                gap: 1.5rem;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .gallery-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .gallery-label {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
             .vacancies-section {
                 padding: 0 1.5rem 5rem;
             }
@@ -599,24 +788,30 @@
 <body>
     <header>
         <nav>
-            <a href="main.html" class="logo">EURASIA AGRO SEMEY</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="main.html">О компании</a></li>
-                <li><a href="ответственность.html">Ответственность</a></li>
-                <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                <li><a href="Новости.html">Новости</a></li>
-                <li><a href="Вакансии.html" class="active">Вакансии</a></li>
-                <li><a href="Контакты.html">Контакты</a></li>
-            </ul>
+            <a href="index.html" class="logo">EURASIA AGRO SEMEY</a>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">О компании</a></li>
+                    <li><a href="ответственность.html">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
+                    <li><a href="Новости.html">Новости</a></li>
+                    <li><a href="Вакансии.html" class="active">Вакансии</a></li>
+                    <li><a href="Контакты.html">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="page-hero">
         <div class="page-hero-content">
-            <h1>Карьера в Eurasia Agro Semey</h1>
-            <p>Присоединяйтесь к нашей команде профессионалов и станьте частью современного предприятия полного цикла</p>
+            <h1>Категории работ</h1>
+            <p>Выберите направление для работы в нашей компании</p>
         </div>
     </section>
 
@@ -624,20 +819,20 @@
     <section class="filter-section">
         <div class="filter-card">
             <div class="filter-group">
-                <label for="department">Отдел</label>
+                <label for="department">Категории работ</label>
                 <select id="department">
-                    <option value="">Все отделы</option>
-                    <option value="production">Производство</option>
-                    <option value="logistics">Логистика</option>
-                    <option value="quality">Контроль качества</option>
-                    <option value="management">Управление</option>
+                    <option value="">Все категории</option>
+                    <option value="office">Работа в офисе</option>
+                    <option value="meat">Мясокомбинат</option>
+                    <option value="farm">Приречное</option>
                 </select>
             </div>
             <div class="filter-group">
                 <label for="location">Локация</label>
                 <select id="location">
                     <option value="">Все локации</option>
-                    <option value="semey">село Чекоман</option>
+                    <option value="semey">Семей</option>
+                    <option value="almaty">Алматы</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -646,139 +841,29 @@
         </div>
     </section>
 
-    <!-- Vacancies Section -->
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-icon">🏢</div>
+                <div class="gallery-label">Работа в офисе</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🏭</div>
+                <div class="gallery-label">Мясокомбинат</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-icon">🌾</div>
+                <div class="gallery-label">Приречное</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
     <section class="vacancies-section">
         <div class="section-header">
-            <h2>Открытые вакансии</h2>
-            <p>12 вакансий доступны</p>
-        </div>
-
-        <div class="vacancies-grid">
-            
-            <!-- Vacancy 1 -->
-            <div class="vacancy-card">
-                <div class="vacancy-header">
-                    <div class="vacancy-title">
-                        <h3>Технолог мясного производства</h3>
-                        <div class="vacancy-meta">
-                            <span class="meta-item">📍 село Чекоман</span>
-                            <span class="meta-item">💼 Полная занятость</span>
-                            <span class="meta-item">⏰ Опубликовано 2 дня назад</span>
-                        </div>
-                    </div>
-                    <span class="vacancy-type">Производство</span>
-                </div>
-                <p class="vacancy-description">
-                    Мы ищем опытного технолога для управления производственными процессами на современном мясоперерабатывающем комплексе. Вы будете отвечать за контроль технологических процессов и качество выпускаемой продукции.
-                </p>
-                <div class="vacancy-requirements">
-                    <h4>Требования:</h4>
-                    <div class="requirements-list">
-                        <div class="requirement-item">Высшее образование (пищевая промышленность, технология)</div>
-                        <div class="requirement-item">Опыт работы технологом от 3 лет</div>
-                        <div class="requirement-item">Знание HACCP, ISO 22000</div>
-                        <div class="requirement-item">Готовность к работе в сменном графике</div>
-                    </div>
-                </div>
-                <div class="vacancy-footer">
-                    <span class="vacancy-salary">от 400 000 ₸</span>
-                    <a href="#" class="apply-btn">Откликнуться</a>
-                </div>
-            </div>
-
-            <!-- Vacancy 2 -->
-            <div class="vacancy-card">
-                <div class="vacancy-header">
-                    <div class="vacancy-title">
-                        <h3>Ветеринарный врач</h3>
-                        <div class="vacancy-meta">
-                            <span class="meta-item">📍 село Чекоман</span>
-                            <span class="meta-item">💼 Полная занятость</span>
-                            <span class="meta-item">⏰ Опубликовано 3 дня назад</span>
-                        </div>
-                    </div>
-                    <span class="vacancy-type">Производство</span>
-                </div>
-                <p class="vacancy-description">
-                    Требуется ветеринарный врач для работы на откормочной площадке. Обеспечение здоровья поголовья, проведение ветеринарных мероприятий, контроль качества сырья.
-                </p>
-                <div class="vacancy-requirements">
-                    <h4>Требования:</h4>
-                    <div class="requirements-list">
-                        <div class="requirement-item">Высшее ветеринарное образование</div>
-                        <div class="requirement-item">Опыт работы с КРС от 2 лет</div>
-                        <div class="requirement-item">Знание ветеринарного законодательства РК</div>
-                        <div class="requirement-item">Готовность к командировкам</div>
-                    </div>
-                </div>
-                <div class="vacancy-footer">
-                    <span class="vacancy-salary">от 350 000 ₸</span>
-                    <a href="#" class="apply-btn">Откликнуться</a>
-                </div>
-            </div>
-
-            <!-- Vacancy 3 -->
-            <div class="vacancy-card">
-                <div class="vacancy-header">
-                    <div class="vacancy-title">
-                        <h3>Специалист по контролю качества</h3>
-                        <div class="vacancy-meta">
-                            <span class="meta-item">📍 село Чекоман</span>
-                            <span class="meta-item">💼 Полная занятость</span>
-                            <span class="meta-item">⏰ Опубликовано 5 дней назад</span>
-                        </div>
-                    </div>
-                    <span class="vacancy-type">Контроль качества</span>
-                </div>
-                <p class="vacancy-description">
-                    В собственную лабораторию требуется специалист по контролю качества. Проведение анализов, контроль соответствия продукции стандартам, ведение документации.
-                </p>
-                <div class="vacancy-requirements">
-                    <h4>Требования:</h4>
-                    <div class="requirements-list">
-                        <div class="requirement-item">Высшее образование (химия, биология, пищевые технологии)</div>
-                        <div class="requirement-item">Опыт работы в лаборатории от 2 лет</div>
-                        <div class="requirement-item">Знание методов анализа пищевой продукции</div>
-                        <div class="requirement-item">Внимательность и ответственность</div>
-                    </div>
-                </div>
-                <div class="vacancy-footer">
-                    <span class="vacancy-salary">от 300 000 ₸</span>
-                    <a href="#" class="apply-btn">Откликнуться</a>
-                </div>
-            </div>
-
-            <!-- Vacancy 4 -->
-            <div class="vacancy-card">
-                <div class="vacancy-header">
-                    <div class="vacancy-title">
-                        <h3>Логист</h3>
-                        <div class="vacancy-meta">
-                            <span class="meta-item">📍 село Чекоман</span>
-                            <span class="meta-item">💼 Полная занятость</span>
-                            <span class="meta-item">⏰ Опубликовано 1 неделю назад</span>
-                        </div>
-                    </div>
-                    <span class="vacancy-type">Логистика</span>
-                </div>
-                <p class="vacancy-description">
-                    Требуется логист для организации поставок сырья и отгрузки готовой продукции. Координация транспорта, оптимизация маршрутов, работа с поставщиками и клиентами.
-                </p>
-                <div class="vacancy-requirements">
-                    <h4>Требования:</h4>
-                    <div class="requirements-list">
-                        <div class="requirement-item">Высшее образование (логистика, экономика, менеджмент)</div>
-                        <div class="requirement-item">Опыт работы логистом от 3 лет</div>
-                        <div class="requirement-item">Знание 1С, Excel на продвинутом уровне</div>
-                        <div class="requirement-item">Навыки планирования и оптимизации</div>
-                    </div>
-                </div>
-                <div class="vacancy-footer">
-                    <span class="vacancy-salary">от 350 000 ₸</span>
-                    <a href="#" class="apply-btn">Откликнуться</a>
-                </div>
-            </div>
-
+            <h2>Категории работ</h2>
+            <p>Выберите подходящее направление</p>
         </div>
     </section>
 
@@ -818,7 +903,7 @@
             <div class="footer-section">
                 <h3>Контакты</h3>
                 <p>БИН: 160740001659</p>
-                <p>село Чекоман, улица Индустриальная, 100</p>
+                <p>Семей, ул. Сеченова, 6</p>
                 <p>область Абай, Казахстан</p>
             </div>
         </div>
@@ -831,6 +916,19 @@
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function switchLanguage(lang) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            event.target.classList.add('active');
+            
+            // Здесь можно добавить логику переключения языка
+            console.log('Переключен язык на:', lang);
         }
     </script>
 </body>

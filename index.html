@@ -41,12 +41,12 @@
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0.5rem 1rem 2rem;
+            padding: 1rem 2rem 1rem 1rem;
         }
 
         .logo {
@@ -58,6 +58,8 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .logo:hover {
@@ -92,6 +94,39 @@
 
         .nav-links a::after {
             display: none;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 117, 73, 0.3);
+            color: #007549;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: rgba(0, 117, 73, 0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: #007549;
+            font-weight: 600;
         }
 
 
@@ -389,7 +424,7 @@
         /* Tablet Responsive */
         @media (max-width: 1200px) {
             nav {
-                padding: 1rem 0.5rem 1rem 1.5rem;
+                padding: 1rem 1.5rem 1rem 1rem;
             }
 
             .hero-content h1 {
@@ -409,6 +444,9 @@
                 gap: 1.5rem;
             }
 
+            .language-switcher {
+                margin-left: 1rem;
+            }
 
         }
 
@@ -419,11 +457,15 @@
             }
 
             nav {
-                padding: 1rem 0.5rem 1rem 1rem;
+                padding: 1rem 1rem 1rem 1rem;
             }
 
             .logo {
                 font-size: 1.3rem;
+            }
+
+            .language-switcher {
+                margin-left: 1rem;
             }
 
             .nav-links {
@@ -554,11 +596,21 @@
             }
 
             nav {
-                padding: 0.8rem 0.5rem 0.8rem 0.8rem;
+                padding: 0.8rem 0.8rem 0.8rem 1rem;
             }
 
             .logo {
                 font-size: 1.1rem;
+            }
+
+            .language-switcher {
+                margin-left: 0.5rem;
+            }
+
+            .language-btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+                min-width: 45px;
             }
 
             .nav-links {
@@ -706,11 +758,21 @@
             }
 
             nav {
-                padding: 0.8rem 0.5rem 0.8rem 0.8rem;
+                padding: 0.8rem 0.5rem 0.8rem 1rem;
             }
 
             .logo {
                 font-size: 1rem;
+            }
+
+            .language-switcher {
+                margin-left: 0.25rem;
+            }
+
+            .language-btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+                min-width: 40px;
             }
 
             .hero {
@@ -795,15 +857,21 @@
     <header>
         <nav>
             <a href="index.html" class="logo">EURASIA AGRO SEMEY</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">О компании</a></li>
-                <li><a href="ответственность.html">Ответственность</a></li>
-                <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                <li><a href="Новости.html">Новости</a></li>
-                <li><a href="Вакансии.html">Вакансии</a></li>
-                <li><a href="Контакты.html">Контакты</a></li>
-            </ul>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">О компании</a></li>
+                    <li><a href="ответственность.html">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
+                    <li><a href="Новости.html">Новости</a></li>
+                    <li><a href="Вакансии.html">Вакансии</a></li>
+                    <li><a href="Контакты.html">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -813,8 +881,8 @@
             <div class="hero-overlay"></div>
 
             <div class="hero-content">
-                <h1>Высококачественная мясная продукция</h1>
-                <p>Современный мясоперерабатывающий комплекс с полным циклом производства для Казахстана и мира</p>
+                <h1>Агропромышленная компания полного цикла</h1>
+                <p>Современный агропромышленный холдинг полного цикла, прямиком из Казахстанских степей</p>
             </div>
         </div>
     </section>
@@ -825,10 +893,10 @@
             <div class="about-content">
                 <h2>О нас</h2>
                 <p>
-                    Eurasia Agro Semey - современное предприятие полного цикла по переработке и консервированию мяса, расположенное в регионе Абай, Казахстан.
+                    Eurasia Agro Semey - это вертикально интегрированная агропромышленная компания, объединяющая ключевые направления агробизнеса. В структуру компании входят мясоперерабатывающий комбинат «Semey Meat Company», современный откормочная площадка «Semey Feedlot», а также агрофирма «Приречное», специализирующееся на выращивании овощных культур.
                 </p>
                 <p>
-                    Мы специализируемся на производстве высококачественной мясной продукции, придерживаясь самых строгих стандартов качества и безопасности пищевых продуктов.
+                    Компания контролирует весь цикл производства — от выращивания сельскохозяйственной продукции и откорма скота до переработки мяса, обеспечивая стабильное качество, безопасность и надежность поставок.
                 </p>
                 <ul>
                     <li>Современное оборудование европейского производства</li>
@@ -849,7 +917,7 @@
         <div class="leadership-container">
             <div class="section-title">
                 <h2>Руководство</h2>
-                <p>Команда профессионалов с многолетним опытом в мясоперерабатывающей индустрии</p>
+                <p>Наша команда профессионалов</p>
             </div>
             <div class="leadership-grid">
                 <div class="leader-card">
@@ -857,9 +925,9 @@
                         [Фото руководителя]
                     </div>
                     <div class="leader-info">
-                        <h3>Имя Фамилия</h3>
-                        <div class="position">Генеральный директор</div>
-                        <p>Краткая биография и опыт работы руководителя компании.</p>
+                        <h3>Имангажинов Кайрат Данабекович</h3>
+                        <div class="position">Заместитель директора по производству</div>
+                        <p>Опытный руководитель производственных процессов с многолетним стажем в агропромышленной отрасли.</p>
                     </div>
                 </div>
                 <div class="leader-card">
@@ -867,9 +935,9 @@
                         [Фото руководителя]
                     </div>
                     <div class="leader-info">
-                        <h3>Имя Фамилия</h3>
-                        <div class="position">Финансовый директор</div>
-                        <p>Краткая биография и опыт работы финансового директора.</p>
+                        <h3>Исембаев Сергазы Кангужанович</h3>
+                        <div class="position">Исполнительный директор</div>
+                        <p>Стратегический лидер, обеспечивающий эффективное управление всеми направлениями деятельности компании.</p>
                     </div>
                 </div>
                 <div class="leader-card">
@@ -877,9 +945,49 @@
                         [Фото руководителя]
                     </div>
                     <div class="leader-info">
-                        <h3>Имя Фамилия</h3>
-                        <div class="position">Директор по производству</div>
-                        <p>Краткая биография и опыт работы директора по производству.</p>
+                        <h3>Чакенова Гульнара Оралтаевна</h3>
+                        <div class="position">Главный бухгалтер</div>
+                        <p>Профессионал в области финансового учета и контроля, обеспечивающий прозрачность финансовых операций.</p>
+                    </div>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        [Фото руководителя]
+                    </div>
+                    <div class="leader-info">
+                        <h3>Изатов Асет Азатович</h3>
+                        <div class="position">Руководитель финансового отдела</div>
+                        <p>Специалист по финансовому планированию и управлению денежными потоками компании.</p>
+                    </div>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        [Фото руководителя]
+                    </div>
+                    <div class="leader-info">
+                        <h3>Межибовский Владислав Ильич</h3>
+                        <div class="position">Начальник отдела снабжения</div>
+                        <p>Эксперт в области логистики и снабжения, обеспечивающий бесперебойные поставки для производства.</p>
+                    </div>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        [Фото руководителя]
+                    </div>
+                    <div class="leader-info">
+                        <h3>Сагидолдаев Даурен Канатович</h3>
+                        <div class="position">Менеджер по коммерции</div>
+                        <p>Профессионал в области продаж и развития коммерческих отношений с партнерами и клиентами.</p>
+                    </div>
+                </div>
+                <div class="leader-card">
+                    <div class="leader-photo">
+                        [Фото руководителя]
+                    </div>
+                    <div class="leader-info">
+                        <h3>Тюлюбаева Сауле Нурлановна</h3>
+                        <div class="position">HR-менеджер</div>
+                        <p>Специалист по управлению персоналом, развитию кадрового потенциала и корпоративной культуры.</p>
                     </div>
                 </div>
             </div>
@@ -913,7 +1021,7 @@
             <div class="footer-section">
                 <h3>Контакты</h3>
                 <p>БИН: 160740001659</p>
-                <p>село Чекоман, улица Индустриальная, 100</p>
+                <p>Семей, ул. Сеченова, 6</p>
                 <p>область Абай, Казахстан</p>
             </div>
         </div>
@@ -926,6 +1034,19 @@
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function switchLanguage(lang) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            event.target.classList.add('active');
+            
+            // Здесь можно добавить логику переключения языка
+            console.log('Переключен язык на:', lang);
         }
 
         // Close mobile menu when clicking on a link

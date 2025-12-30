@@ -41,12 +41,12 @@
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: none;
+            margin: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0.5rem 1rem 2rem;
+            padding: 1rem 2rem 1rem 1rem;
         }
 
         .logo {
@@ -58,6 +58,8 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             white-space: nowrap;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .logo:hover {
@@ -89,6 +91,39 @@
         .nav-links a.active {
             color: #007549;
             background: rgba(0, 117, 73, 0.06);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid rgba(0, 117, 73, 0.3);
+            color: #007549;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: rgba(0, 117, 73, 0.5);
+        }
+
+        .language-btn.active {
+            background: rgba(0, 117, 73, 0.1);
+            border-color: #007549;
+            font-weight: 600;
         }
 
         .mobile-menu-btn {
@@ -353,39 +388,15 @@
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             overflow: hidden;
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 0;
-            align-items: center;
+            display: block;
         }
 
         .policy-item:nth-child(even) {
-            grid-template-columns: 1fr 350px;
-        }
-
-        .policy-item:nth-child(even) .policy-image {
-            order: 2;
-        }
-
-        .policy-item:nth-child(even) .policy-content {
-            order: 1;
+            display: block;
         }
 
         .content-section.alt-bg .policy-item {
             background: white;
-        }
-
-        .policy-image {
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
-            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.95rem;
-            font-weight: 500;
         }
 
         .policy-content {
@@ -394,8 +405,8 @@
         }
 
         .policy-item:nth-child(even) .policy-content {
-            border-left: none;
-            border-right: 5px solid #007549;
+            border-left: 5px solid #007549;
+            border-right: none;
         }
 
         .policy-item h3 {
@@ -612,25 +623,16 @@
             }
 
             .policy-item {
-                grid-template-columns: 1fr;
+                display: block;
             }
 
             .policy-item:nth-child(even) {
-                grid-template-columns: 1fr;
-            }
-
-            .policy-item:nth-child(even) .policy-image {
-                order: 1;
+                display: block;
             }
 
             .policy-item:nth-child(even) .policy-content {
-                order: 2;
                 border-right: none;
                 border-left: 5px solid #007549;
-            }
-
-            .policy-image {
-                min-height: 250px;
             }
 
             .policy-content {
@@ -725,10 +727,6 @@
                 padding: 1.5rem;
             }
 
-            .policy-image {
-                min-height: 220px;
-            }
-
             .policy-item h3 {
                 font-size: 1.25rem;
             }
@@ -762,23 +760,29 @@
     <!-- Header Navigation -->
     <header>
         <nav>
-            <a href="main.html" class="logo">EURASIA AGRO SEMEY</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="main.html">О компании</a></li>
-                <li><a href="ответственность.html" class="active">Ответственность</a></li>
-                <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                <li><a href="Новости.html">Новости</a></li>
-                <li><a href="Вакансии.html">Вакансии</a></li>
-                <li><a href="Контакты.html">Контакты</a></li>
-            </ul>
+            <a href="index.html" class="logo">EURASIA AGRO SEMEY</a>
+            <div style="display: flex; align-items: center;">
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">О компании</a></li>
+                    <li><a href="ответственность.html" class="active">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
+                    <li><a href="Новости.html">Новости</a></li>
+                    <li><a href="Вакансии.html">Вакансии</a></li>
+                    <li><a href="Контакты.html">Контакты</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Banner -->
     <section class="page-hero">
         <div class="page-hero-content">
-            <div class="page-hero-badge">Наша миссия</div>
+            <div class="page-hero-badge">Корпоративная Социальная Ответственность</div>
             <h1>Ответственность</h1>
             <p>Мы строим устойчивое будущее через социальную ответственность, этичное ведение бизнеса и заботу о людях и окружающей среде</p>
             
@@ -853,77 +857,6 @@
                     </div>
                 </div>
 
-                <div class="impact-card">
-                    <div class="impact-card-image">[Изображение: Фермеры]</div>
-                    <div class="impact-card-content">
-                        <div class="impact-icon">🤝</div>
-                        <h3>Сотрудничество с фермерами</h3>
-                        <p>Поддерживаем местных производителей, создавая взаимовыгодные партнерские отношения</p>
-                        <ul>
-                            <li>Справедливые цены на продукцию</li>
-                            <li>Долгосрочные контракты</li>
-                            <li>Техническая поддержка</li>
-                            <li>Консультации по повышению качества</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="impact-card">
-                    <div class="impact-card-image">[Изображение: Образование]</div>
-                    <div class="impact-card-content">
-                        <div class="impact-icon">🎓</div>
-                        <h3>Образовательные программы</h3>
-                        <p>Вкладываем в будущее через образование и развитие профессиональных компетенций</p>
-                        <ul>
-                            <li>Стажировки для студентов</li>
-                            <li>Практика на производстве</li>
-                            <li>Профориентационные программы</li>
-                            <li>Поддержка учебных заведений</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="impact-card">
-                    <div class="impact-card-image">[Изображение: Здоровье]</div>
-                    <div class="impact-card-content">
-                        <div class="impact-icon">❤️</div>
-                        <h3>Здоровье и благополучие</h3>
-                        <p>Забота о здоровье сотрудников и потребителей нашей продукции</p>
-                        <ul>
-                            <li>Медицинское страхование персонала</li>
-                            <li>Программы здорового образа жизни</li>
-                            <li>Контроль качества продукции</li>
-                            <li>Натуральные ингредиенты</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="section-container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Наш вклад в цифрах</h2>
-            <p style="font-size: 1.1rem; opacity: 0.95;">Конкретные результаты нашей социальной ответственности</p>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="number">500+</div>
-                    <div class="label">Рабочих мест создано</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">150+</div>
-                    <div class="label">Партнеров-фермеров</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">100%</div>
-                    <div class="label">Экологических стандартов</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">50+</div>
-                    <div class="label">Социальных проектов в год</div>
-                </div>
             </div>
         </div>
     </section>
@@ -938,7 +871,6 @@
 
             <div class="policy-grid">
                 <div class="policy-item">
-                    <div class="policy-image">[Изображение: Корпоративная этика]</div>
                     <div class="policy-content">
                         <h3><span>📋</span> Корпоративная этика</h3>
                         <p>Мы строим бизнес на принципах честности, добросовестности и уважения ко всем заинтересованным сторонам. Каждое решение принимается с учетом этических норм и долгосрочных последствий.</p>
@@ -953,22 +885,6 @@
                 </div>
 
                 <div class="policy-item">
-                    <div class="policy-image">[Изображение: Соблюдение законов]</div>
-                    <div class="policy-content">
-                        <h3><span>⚖️</span> Соблюдение законодательства</h3>
-                        <p>Строгое следование законам и нормативным актам является основой нашей деятельности. Мы превышаем минимальные требования, стремясь к передовым практикам отрасли.</p>
-                        <ul>
-                            <li>Полное соблюдение трудового законодательства РК</li>
-                            <li>Выполнение экологических норм и стандартов</li>
-                            <li>Соответствие санитарно-гигиеническим требованиям</li>
-                            <li>Налоговая добросовестность и прозрачность</li>
-                            <li>Регулярный аудит соответствия законодательству</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="policy-item">
-                    <div class="policy-image">[Изображение: Контроль качества]</div>
                     <div class="policy-content">
                         <h3><span>✅</span> Качество и безопасность</h3>
                         <p>Безопасность нашей продукции и производственных процессов является абсолютным приоритетом. Мы применяем международные стандарты контроля качества.</p>
@@ -983,7 +899,6 @@
                 </div>
 
                 <div class="policy-item">
-                    <div class="policy-image">[Изображение: Права работников]</div>
                     <div class="policy-content">
                         <h3><span>👔</span> Права сотрудников</h3>
                         <p>Уважение к правам и достоинству каждого сотрудника создает основу для продуктивной и безопасной рабочей среды. Мы обеспечиваем равные возможности для всех.</p>
@@ -998,7 +913,6 @@
                 </div>
 
                 <div class="policy-item">
-                    <div class="policy-image">[Изображение: Охрана труда]</div>
                     <div class="policy-content">
                         <h3><span>🛡️</span> Охрана труда и техника безопасности</h3>
                         <p>Безопасность наших сотрудников превыше всего. Мы создаем условия труда, которые минимизируют риски и обеспечивают защиту здоровья работников.</p>
@@ -1013,7 +927,6 @@
                 </div>
 
                 <div class="policy-item">
-                    <div class="policy-image">[Изображение: Устойчивое развитие]</div>
                     <div class="policy-content">
                         <h3><span>🌍</span> Устойчивое развитие</h3>
                         <p>Мы видим свою роль в создании устойчивого будущего для следующих поколений через ответственное использование ресурсов и инновационные подходы.</p>
@@ -1057,7 +970,7 @@
             <div class="footer-section">
                 <h3>Контакты</h3>
                 <p>БИН: 160740001659</p>
-                <p>село Чекоман, улица Индустриальная, 100</p>
+                <p>Семей, ул. Сеченова, 6</p>
                 <p>область Абай, Казахстан</p>
             </div>
         </div>
@@ -1070,6 +983,19 @@
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+        }
+
+        function switchLanguage(lang) {
+            // Убираем активный класс со всех кнопок
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Добавляем активный класс к выбранной кнопке
+            event.target.classList.add('active');
+            
+            // Здесь можно добавить логику переключения языка
+            console.log('Переключен язык на:', lang);
         }
 
         // Close mobile menu when clicking on a link
