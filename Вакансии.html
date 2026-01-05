@@ -18,13 +18,7 @@
             line-height: 1.6;
             color: #1a202c;
             font-weight: 400;
-            background: 
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%),
-                url('основное фото.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background: #f8f9fa;
             padding-top: 1rem;
         }
 
@@ -108,13 +102,13 @@
             background: transparent;
             border: 1px solid rgba(0, 117, 73, 0.3);
             color: #007549;
-            padding: 0.4rem 0.8rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            min-width: 50px;
+            min-width: 40px;
             text-align: center;
         }
 
@@ -138,6 +132,7 @@
             color: #007549;
             padding: 0.5rem;
             border-radius: 12px;
+            z-index: 1001;
         }
 
         /* Hero Section */
@@ -245,124 +240,6 @@
             background: #00a066;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 117, 73, 0.3);
-        }
-
-        /* Photo Gallery Section */
-        .photo-gallery {
-            max-width: 1400px;
-            margin: -1rem auto 4rem;
-            padding: 0 3rem;
-            position: relative;
-            z-index: 5;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .gallery-item {
-            border-radius: 20px;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1rem;
-            font-weight: 500;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .gallery-item:nth-child(1) {
-            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
-        }
-
-        .gallery-item:nth-child(2) {
-            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-        }
-
-        .gallery-item:nth-child(3) {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
-
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .gallery-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-            z-index: 2;
-            position: relative;
-            color: white;
-        }
-
-        .gallery-item:hover .gallery-icon {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .gallery-label {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            z-index: 2;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-label {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
         }
 
         /* Vacancies Section */
@@ -637,6 +514,38 @@
 
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+                gap: 0;
+                align-items: stretch;
+                border-radius: 16px;
+                margin-top: 0.5rem;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid rgba(0, 117, 73, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 0.5rem;
+                border-radius: 8px;
+                margin: 0.2rem 0;
             }
 
             .mobile-menu-btn {
@@ -658,19 +567,6 @@
             .filter-card {
                 grid-template-columns: 1fr;
                 padding: 2rem;
-            }
-
-            .photo-gallery {
-                padding: 0 2rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .gallery-item {
-                height: 280px;
             }
 
             .vacancies-section {
@@ -723,29 +619,6 @@
                 padding: 1.5rem;
             }
 
-            .photo-gallery {
-                padding: 0 1.5rem;
-                margin: -1rem auto 3rem;
-            }
-
-            .gallery-grid {
-                gap: 1.5rem;
-            }
-
-            .gallery-item {
-                height: 250px;
-            }
-
-            .gallery-icon {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .gallery-label {
-                padding: 0.8rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
             .vacancies-section {
                 padding: 0 1.5rem 5rem;
             }
@@ -783,6 +656,91 @@
                 gap: 2.5rem;
             }
         }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a {
+                padding: 1rem 1.25rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .mobile-menu-btn {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .vacancy-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 117, 73, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 117, 73, 0.4);
+            background: linear-gradient(135deg, #00a066 0%, #007549 100%);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile adjustments for scroll button */
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -792,16 +750,17 @@
             <div style="display: flex; align-items: center;">
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">О компании</a></li>
-                    <li><a href="ответственность.html">Ответственность</a></li>
-                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                    <li><a href="Новости.html">Новости</a></li>
-                    <li><a href="Вакансии.html" class="active">Вакансии</a></li>
-                    <li><a href="Контакты.html">Контакты</a></li>
+                    <li><a href="index.html" data-translate="navigation_menu_home">О компании</a></li>
+                    <li><a href="ответственность.html" data-translate="navigation_menu_responsibility">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html" data-translate="navigation_menu_activity">Вид деятельности</a></li>
+                    <li><a href="Новости.html" data-translate="navigation_menu_news">Новости</a></li>
+                    <li><a href="Вакансии.html" class="active" data-translate="navigation_menu_vacancies">Вакансии</a></li>
+                    <li><a href="Контакты.html" data-translate="navigation_menu_contacts">Контакты</a></li>
                 </ul>
                 <div class="language-switcher">
-                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
-                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                    <button class="language-btn active" onclick="switchLanguage('ru', event)">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz', event)">Каз</button>
+                    <button class="language-btn" onclick="switchLanguage('en', event)">Eng</button>
                 </div>
             </div>
         </nav>
@@ -810,8 +769,8 @@
     <!-- Hero Section -->
     <section class="page-hero">
         <div class="page-hero-content">
-            <h1>Категории работ</h1>
-            <p>Выберите направление для работы в нашей компании</p>
+            <h1 data-translate="vacancies_hero_title">Категории работ</h1>
+            <p data-translate="vacancies_hero_desc">Выберите направление для работы в нашей компании</p>
         </div>
     </section>
 
@@ -819,7 +778,7 @@
     <section class="filter-section">
         <div class="filter-card">
             <div class="filter-group">
-                <label for="department">Категории работ</label>
+                <label for="department" data-translate="vacancies_filter_department">Категории работ</label>
                 <select id="department">
                     <option value="">Все категории</option>
                     <option value="office">Работа в офисе</option>
@@ -828,7 +787,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="location">Локация</label>
+                <label for="location" data-translate="vacancies_filter_location">Локация</label>
                 <select id="location">
                     <option value="">Все локации</option>
                     <option value="semey">Семей</option>
@@ -836,25 +795,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <button class="filter-btn">Найти вакансии</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Photo Gallery Section -->
-    <section class="photo-gallery">
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-icon">🏢</div>
-                <div class="gallery-label">Работа в офисе</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">🏭</div>
-                <div class="gallery-label">Мясокомбинат</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-icon">🌾</div>
-                <div class="gallery-label">Приречное</div>
+                <button class="filter-btn" data-translate="vacancies_filter_btn">Найти вакансии</button>
             </div>
         </div>
     </section>
@@ -862,17 +803,17 @@
     <!-- Categories Section -->
     <section class="vacancies-section">
         <div class="section-header">
-            <h2>Категории работ</h2>
-            <p>Выберите подходящее направление</p>
+            <h2 data-translate="vacancies_section_title">Категории работ</h2>
+            <p data-translate="vacancies_section_desc">Выберите подходящее направление</p>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2>Не нашли подходящую вакансию?</h2>
-            <p>Отправьте нам свое резюме, и мы свяжемся с вами, когда появится подходящая позиция. Мы всегда рады талантливым и целеустремленным специалистам.</p>
-            <a href="#" class="cta-btn">Отправить резюме</a>
+            <h2 data-translate="vacancies_cta_title">Не нашли подходящую вакансию?</h2>
+            <p data-translate="vacancies_cta_desc">Отправьте нам свое резюме, и мы свяжемся с вами, когда появится подходящая позиция. Мы всегда рады талантливым и целеустремленным специалистам.</p>
+            <a href="#" class="cta-btn" data-translate="vacancies_cta_btn">Отправить резюме</a>
         </div>
     </section>
 
@@ -918,18 +859,31 @@
             navLinks.classList.toggle('active');
         }
 
-        function switchLanguage(lang) {
-            // Убираем активный класс со всех кнопок
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
+        // Scroll to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            // Добавляем активный класс к выбранной кнопке
-            event.target.classList.add('active');
-            
-            // Здесь можно добавить логику переключения языка
-            console.log('Переключен язык на:', lang);
         }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+    
+    <!-- Подключаем систему переводов -->
+    <script src="translations.js"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
             line-height: 1.6;
             color: #1a202c;
             font-weight: 400;
-            background: #ffffff;
+            background: #f8f9fa;
             padding-top: 1rem;
         }
 
@@ -99,13 +99,13 @@
             background: transparent;
             border: 1px solid rgba(0, 117, 73, 0.3);
             color: #007549;
-            padding: 0.4rem 0.8rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            min-width: 50px;
+            min-width: 40px;
             text-align: center;
         }
 
@@ -130,6 +130,7 @@
             padding: 0.5rem;
             border-radius: 12px;
             transition: all 0.3s ease;
+            z-index: 1001;
         }
 
         .mobile-menu-btn:hover {
@@ -522,10 +523,26 @@
                 align-items: stretch;
                 border-radius: 16px;
                 margin-top: 0.5rem;
+                z-index: 1000;
             }
 
             .nav-links.active {
                 display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid rgba(0, 117, 73, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 0.5rem;
+                border-radius: 8px;
+                margin: 0.2rem 0;
             }
 
             .mobile-menu-btn {
@@ -671,6 +688,99 @@
                 margin-bottom: 2rem;
             }
         }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a {
+                padding: 1rem 1.25rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .mobile-menu-btn {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .featured-card:hover {
+                transform: none;
+            }
+
+            .story-card:hover {
+                transform: none;
+            }
+
+            .load-more-btn {
+                min-height: 44px;
+            }
+        }
+
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 117, 73, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 117, 73, 0.4);
+            background: linear-gradient(135deg, #00a066 0%, #007549 100%);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile adjustments for scroll button */
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -681,16 +791,17 @@
             <div style="display: flex; align-items: center;">
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">О компании</a></li>
-                    <li><a href="ответственность.html">Ответственность</a></li>
-                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                    <li><a href="Новости.html" class="active">Новости</a></li>
-                    <li><a href="Вакансии.html">Вакансии</a></li>
-                    <li><a href="Контакты.html">Контакты</a></li>
+                    <li><a href="index.html" data-translate="navigation_menu_home">О компании</a></li>
+                    <li><a href="ответственность.html" data-translate="navigation_menu_responsibility">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html" data-translate="navigation_menu_activity">Вид деятельности</a></li>
+                    <li><a href="Новости.html" class="active" data-translate="navigation_menu_news">Новости</a></li>
+                    <li><a href="Вакансии.html" data-translate="navigation_menu_vacancies">Вакансии</a></li>
+                    <li><a href="Контакты.html" data-translate="navigation_menu_contacts">Контакты</a></li>
                 </ul>
                 <div class="language-switcher">
-                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
-                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                    <button class="language-btn active" onclick="switchLanguage('ru', event)">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz', event)">Каз</button>
+                    <button class="language-btn" onclick="switchLanguage('en', event)">Eng</button>
                 </div>
             </div>
         </nav>
@@ -698,20 +809,20 @@
 
     <!-- Hero Section -->
     <section class="page-hero">
-        <h1>Новости и истории</h1>
-        <p>Узнайте о важных событиях, достижениях и развитии нашей компании</p>
+        <h1 data-translate="news_hero_title">Новости и истории</h1>
+        <p data-translate="news_hero_desc">Узнайте о важных событиях, достижениях и развитии нашей компании</p>
     </section>
 
     <!-- Featured Story -->
     <section class="featured-story">
         <div class="featured-card">
             <div class="featured-image">
-                <span class="featured-badge">Главное событие</span>
+                <span class="featured-badge" data-translate="news_featured_badge">Главное событие</span>
                 [Главное изображение: Торжественное открытие комплекса]
             </div>
             <div class="featured-content">
                 <span class="featured-date">18 декабря 2024</span>
-                <h2>Открытие современного мясоперерабатывающего комплекса в регионе Абай</h2>
+                <h2 data-translate="news_featured_title">Открытие современного мясоперерабатывающего комплекса в регионе Абай</h2>
                 <p>Сегодня состоялось торжественное открытие мясоперерабатывающего комплекса Eurasia Agro Semey. Это важная веха в развитии пищевой промышленности региона. Современное предприятие, оснащенное европейским оборудованием, создаст более 500 рабочих мест и обеспечит высокое качество продукции.</p>
                 <a href="новости открытие.html" class="read-more-link">Читать полностью →</a>
             </div>
@@ -725,7 +836,7 @@
 
     <!-- Stories Grid -->
     <section class="stories-section">
-        <h2 class="section-title">Последние новости</h2>
+        <h2 class="section-title" data-translate="news_section_title">Последние новости</h2>
         
         <div class="stories-grid">
             
@@ -857,19 +968,6 @@
             navLinks.classList.toggle('active');
         }
 
-        function switchLanguage(lang) {
-            // Убираем активный класс со всех кнопок
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Добавляем активный класс к выбранной кнопке
-            event.target.classList.add('active');
-            
-            // Здесь можно добавить логику переключения языка
-            console.log('Переключен язык на:', lang);
-        }
-
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 const navLinks = document.getElementById('navLinks');
@@ -878,6 +976,32 @@
                 }
             });
         });
+
+        // Scroll to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+    
+    <!-- Подключаем систему переводов -->
+    <script src="translations.js"></script>
 </body>
 </html>

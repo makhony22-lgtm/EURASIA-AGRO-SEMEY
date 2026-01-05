@@ -113,13 +113,13 @@
             background: transparent;
             border: 1px solid rgba(0, 117, 73, 0.3);
             color: #007549;
-            padding: 0.4rem 0.8rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            min-width: 50px;
+            min-width: 40px;
             text-align: center;
         }
 
@@ -143,6 +143,7 @@
             color: #007549;
             padding: 0.5rem;
             border-radius: 12px;
+            z-index: 1001;
         }
 
         /* Hero Section */
@@ -522,6 +523,38 @@
 
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+                gap: 0;
+                align-items: stretch;
+                border-radius: 16px;
+                margin-top: 0.5rem;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid rgba(0, 117, 73, 0.1);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 0.5rem;
+                border-radius: 8px;
+                margin: 0.2rem 0;
             }
 
             .mobile-menu-btn {
@@ -546,13 +579,8 @@
             }
 
             .contact-info {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
             }
 
             .map-section {
@@ -600,10 +628,6 @@
                 padding: 2rem;
             }
 
-            .info-card {
-                padding: 2rem;
-            }
-
             .contact-form-card {
                 padding: 2rem;
             }
@@ -641,6 +665,102 @@
                 gap: 2.5rem;
             }
         }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-links a {
+                padding: 1rem 1.25rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .mobile-menu-btn {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .info-card:hover {
+                transform: none;
+            }
+
+            .additional-card:hover {
+                transform: none;
+            }
+
+            .submit-btn,
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                min-height: 44px;
+            }
+        }
+
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 117, 73, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 117, 73, 0.4);
+            background: linear-gradient(135deg, #00a066 0%, #007549 100%);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile adjustments for scroll button */
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -650,16 +770,17 @@
             <div style="display: flex; align-items: center;">
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">О компании</a></li>
-                    <li><a href="ответственность.html">Ответственность</a></li>
-                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                    <li><a href="Новости.html">Новости</a></li>
-                    <li><a href="Вакансии.html">Вакансии</a></li>
-                    <li><a href="Контакты.html" class="active">Контакты</a></li>
+                    <li><a href="index.html" data-translate="navigation_menu_home">О компании</a></li>
+                    <li><a href="ответственность.html" data-translate="navigation_menu_responsibility">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html" data-translate="navigation_menu_activity">Вид деятельности</a></li>
+                    <li><a href="Новости.html" data-translate="navigation_menu_news">Новости</a></li>
+                    <li><a href="Вакансии.html" data-translate="navigation_menu_vacancies">Вакансии</a></li>
+                    <li><a href="Контакты.html" class="active" data-translate="navigation_menu_contacts">Контакты</a></li>
                 </ul>
                 <div class="language-switcher">
-                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
-                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                    <button class="language-btn active" onclick="switchLanguage('ru', event)">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz', event)">Каз</button>
+                    <button class="language-btn" onclick="switchLanguage('en', event)">Eng</button>
                 </div>
             </div>
         </nav>
@@ -668,8 +789,8 @@
     <!-- Hero Section -->
     <section class="page-hero">
         <div class="page-hero-content">
-            <h1>Свяжитесь с нами</h1>
-            <p>Мы всегда готовы ответить на ваши вопросы и обсудить возможности сотрудничества</p>
+            <h1 data-translate="contacts_hero_title">Свяжитесь с нами</h1>
+            <p data-translate="contacts_hero_desc">Мы всегда готовы ответить на ваши вопросы и обсудить возможности сотрудничества</p>
         </div>
     </section>
 
@@ -681,7 +802,7 @@
             <div class="contact-info">
                 <div class="info-card">
                     <div class="info-card-icon">📍</div>
-                    <h3>Адрес</h3>
+                    <h3 data-translate="contacts_address_title">Адрес</h3>
                     <p class="contact-text">Семей, ул. Сеченова, 6</p>
                     <p class="contact-text">Абайская область, Казахстан</p>
                     <p class="contact-text">071410</p>
@@ -689,7 +810,7 @@
 
                 <div class="info-card">
                     <div class="info-card-icon">📞</div>
-                    <h3>Телефон</h3>
+                    <h3 data-translate="contacts_phone_title">Телефон</h3>
                     <p class="contact-link">+7 (722) 212-34-56</p>
                     <p class="contact-link">+7 (722) 212-34-57</p>
                     <p class="contact-text">Пн-Пт: 9:00 - 18:00</p>
@@ -697,7 +818,7 @@
 
                 <div class="info-card">
                     <div class="info-card-icon">✉️</div>
-                    <h3>Email</h3>
+                    <h3 data-translate="contacts_email_title">Email</h3>
                     <p class="contact-link">info@eurasiaagro.kz</p>
                     <p class="contact-link">sales@eurasiaagro.kz</p>
                     <p class="contact-link">hr@eurasiaagro.kz</p>
@@ -705,7 +826,7 @@
 
                 <div class="info-card">
                     <div class="info-card-icon">🏢</div>
-                    <h3>Реквизиты</h3>
+                    <h3 data-translate="contacts_requisites_title">Реквизиты</h3>
                     <p class="contact-text"><strong>БИН:</strong> 160740001659</p>
                     <p class="contact-text"><strong>ТОО:</strong> "Eurasia Agro Semey"</p>
                 </div>
@@ -713,27 +834,27 @@
 
             <!-- Contact Form -->
             <div class="contact-form-card">
-                <h2>Напишите нам</h2>
-                <p>Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+                <h2 data-translate="contacts_form_title">Напишите нам</h2>
+                <p data-translate="contacts_form_desc">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
                 
                 <form>
                     <div class="form-group">
-                        <label for="name">Ваше имя *</label>
+                        <label for="name" data-translate="contacts_form_name">Ваше имя *</label>
                         <input type="text" id="name" required placeholder="Введите ваше имя">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email *</label>
+                        <label for="email" data-translate="contacts_form_email">Email *</label>
                         <input type="email" id="email" required placeholder="your@email.com">
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Телефон</label>
+                        <label for="phone" data-translate="contacts_form_phone">Телефон</label>
                         <input type="tel" id="phone" placeholder="+7 (___) ___-__-__">
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">Тема обращения *</label>
+                        <label for="subject" data-translate="contacts_form_subject">Тема обращения *</label>
                         <select id="subject" required>
                             <option value="">Выберите тему</option>
                             <option value="cooperation">Сотрудничество</option>
@@ -745,11 +866,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Сообщение *</label>
+                        <label for="message" data-translate="contacts_form_message">Сообщение *</label>
                         <textarea id="message" required placeholder="Расскажите о вашем вопросе или предложении"></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">Отправить сообщение</button>
+                    <button type="submit" class="submit-btn" data-translate="contacts_form_btn">Отправить сообщение</button>
                 </form>
             </div>
 
@@ -768,24 +889,24 @@
     <!-- Additional Info Section -->
     <section class="additional-info">
         <div class="additional-container">
-            <h2 class="additional-title">Как с нами связаться</h2>
+            <h2 class="additional-title" data-translate="contacts_additional_title">Как с нами связаться</h2>
             <div class="additional-grid">
                 
                 <div class="additional-card">
                     <div class="additional-card-icon">🤝</div>
-                    <h3>Сотрудничество</h3>
+                    <h3 data-translate="contacts_additional_coop">Сотрудничество</h3>
                     <p>Заинтересованы в партнерстве? Свяжитесь с нашим отделом продаж для обсуждения условий сотрудничества</p>
                 </div>
 
                 <div class="additional-card">
                     <div class="additional-card-icon">🚚</div>
-                    <h3>Поставщикам</h3>
+                    <h3 data-translate="contacts_additional_suppliers">Поставщикам</h3>
                     <p>Если вы фермер или поставщик сырья, напишите нам для обсуждения долгосрочного сотрудничества</p>
                 </div>
 
                 <div class="additional-card">
                     <div class="additional-card-icon">📋</div>
-                    <h3>Вакансии</h3>
+                    <h3 data-translate="contacts_additional_vacancies">Вакансии</h3>
                     <p>Хотите присоединиться к нашей команде? Отправьте резюме на hr@eurasiaagro.kz или посетите раздел вакансий</p>
                 </div>
 
@@ -835,25 +956,38 @@
             navLinks.classList.toggle('active');
         }
 
-        function switchLanguage(lang) {
-            // Убираем активный класс со всех кнопок
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Добавляем активный класс к выбранной кнопке
-            event.target.classList.add('active');
-            
-            // Здесь можно добавить логику переключения языка
-            console.log('Переключен язык на:', lang);
-        }
-
         // Form submission handler
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
             this.reset();
         });
+
+        // Scroll to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+    
+    <!-- Подключаем систему переводов -->
+    <script src="translations.js"></script>
 </body>
 </html>

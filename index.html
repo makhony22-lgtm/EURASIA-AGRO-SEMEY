@@ -108,13 +108,13 @@
             background: transparent;
             border: 1px solid rgba(0, 117, 73, 0.3);
             color: #007549;
-            padding: 0.4rem 0.8rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            min-width: 50px;
+            min-width: 40px;
             text-align: center;
         }
 
@@ -142,6 +142,7 @@
             padding: 0.5rem;
             border-radius: 12px;
             transition: all 0.3s ease;
+            z-index: 1001;
         }
 
         .mobile-menu-btn:hover {
@@ -262,7 +263,7 @@
             width: 100%;
             height: 400px;
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-radius: 12px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -271,6 +272,25 @@
             font-weight: 500;
             box-shadow: 0 8px 25px rgba(0,117,73,0.08);
             border: 1px solid rgba(0,117,73,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .about-image-placeholder:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,117,73,0.15);
+        }
+
+        .about-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .about-image-placeholder:hover img {
+            transform: scale(1.05);
         }
 
         /* Leadership Section */
@@ -482,6 +502,7 @@
                 align-items: stretch;
                 border-radius: 16px;
                 margin-top: 0.5rem;
+                z-index: 1000;
             }
 
             .nav-links li {
@@ -558,6 +579,11 @@
 
             .about-image-placeholder {
                 height: 300px;
+                border-radius: 12px;
+            }
+
+            .about-image-placeholder img {
+                border-radius: 12px;
             }
 
             .leadership-section {
@@ -608,9 +634,9 @@
             }
 
             .language-btn {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.8rem;
-                min-width: 45px;
+                padding: 0.15rem 0.4rem;
+                font-size: 0.75rem;
+                min-width: 35px;
             }
 
             .nav-links {
@@ -641,6 +667,10 @@
             .hero-content p {
                 font-size: 0.95rem;
                 line-height: 1.5;
+            }
+
+            .about-section {
+                padding: 3rem 1.5rem;
             }
 
             .about-section {
@@ -678,6 +708,11 @@
                 height: 250px;
                 font-size: 0.9rem;
                 margin-top: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .about-image-placeholder img {
+                border-radius: 12px;
             }
 
             .leadership-section {
@@ -770,9 +805,9 @@
             }
 
             .language-btn {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.75rem;
-                min-width: 40px;
+                padding: 0.1rem 0.35rem;
+                font-size: 0.7rem;
+                min-width: 32px;
             }
 
             .hero {
@@ -845,9 +880,81 @@
             .leader-card:hover {
                 transform: none;
             }
+        }
 
-            .about-image-placeholder:hover {
-                transform: none;
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Ensure all images are responsive */
+        .about-container img,
+        .leadership-grid img,
+        .hero-image-placeholder img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007549 0%, #00a066 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 117, 73, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 117, 73, 0.4);
+            background: linear-gradient(135deg, #00a066 0%, #007549 100%);
+        }
+
+        .scroll-to-top:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile adjustments for scroll button */
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -860,16 +967,17 @@
             <div style="display: flex; align-items: center;">
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">О компании</a></li>
-                    <li><a href="ответственность.html">Ответственность</a></li>
-                    <li><a href="Вид деятельности.html">Вид деятельности</a></li>
-                    <li><a href="Новости.html">Новости</a></li>
-                    <li><a href="Вакансии.html">Вакансии</a></li>
-                    <li><a href="Контакты.html">Контакты</a></li>
+                    <li><a href="index.html" data-translate="navigation_menu_home">О компании</a></li>
+                    <li><a href="ответственность.html" data-translate="navigation_menu_responsibility">Ответственность</a></li>
+                    <li><a href="Вид деятельности.html" data-translate="navigation_menu_activity">Вид деятельности</a></li>
+                    <li><a href="Новости.html" data-translate="navigation_menu_news">Новости</a></li>
+                    <li><a href="Вакансии.html" data-translate="navigation_menu_vacancies">Вакансии</a></li>
+                    <li><a href="Контакты.html" data-translate="navigation_menu_contacts">Контакты</a></li>
                 </ul>
                 <div class="language-switcher">
-                    <button class="language-btn active" onclick="switchLanguage('ru')">Рус</button>
-                    <button class="language-btn" onclick="switchLanguage('kz')">Каз</button>
+                    <button class="language-btn active" onclick="switchLanguage('ru', event)">Рус</button>
+                    <button class="language-btn" onclick="switchLanguage('kz', event)">Каз</button>
+                    <button class="language-btn" onclick="switchLanguage('en', event)">Eng</button>
                 </div>
             </div>
         </nav>
@@ -881,8 +989,8 @@
             <div class="hero-overlay"></div>
 
             <div class="hero-content">
-                <h1>Агропромышленная компания полного цикла</h1>
-                <p>Современный агропромышленный холдинг полного цикла, прямиком из Казахстанских степей</p>
+                <h1 data-translate="index_hero_title">Агропромышленная компания полного цикла</h1>
+                <p data-translate="index_hero_desc">Современный агропромышленный холдинг полного цикла, прямиком из Казахстанских степей</p>
             </div>
         </div>
     </section>
@@ -891,23 +999,23 @@
     <section class="about-section">
         <div class="about-container">
             <div class="about-content">
-                <h2>О нас</h2>
-                <p>
+                <h2 data-translate="index_about_title">О нас</h2>
+                <p data-translate="index_about_desc1">
                     Eurasia Agro Semey - это вертикально интегрированная агропромышленная компания, объединяющая ключевые направления агробизнеса. В структуру компании входят мясоперерабатывающий комбинат «Semey Meat Company», современный откормочная площадка «Semey Feedlot», а также агрофирма «Приречное», специализирующееся на выращивании овощных культур.
                 </p>
-                <p>
+                <p data-translate="index_about_desc2">
                     Компания контролирует весь цикл производства — от выращивания сельскохозяйственной продукции и откорма скота до переработки мяса, обеспечивая стабильное качество, безопасность и надежность поставок.
                 </p>
                 <ul>
-                    <li>Современное оборудование европейского производства</li>
-                    <li>Полный цикл производства от откорма до готовой продукции</li>
-                    <li>Строгий контроль качества на всех этапах</li>
-                    <li>Квалифицированный персонал с многолетним опытом</li>
-                    <li>Экологически ответственное производство</li>
+                    <li data-translate="index_about_feature1">Современное оборудование европейского производства</li>
+                    <li data-translate="index_about_feature2">Полный цикл производства от откорма до готовой продукции</li>
+                    <li data-translate="index_about_feature3">Строгий контроль качества на всех этапах</li>
+                    <li data-translate="index_about_feature4">Квалифицированный персонал с многолетним опытом</li>
+                    <li data-translate="index_about_feature5">Экологически ответственное производство</li>
                 </ul>
             </div>
             <div class="about-image-placeholder">
-                [Место для изображения]
+                <img src="фото1.png" alt="О компании">
             </div>
         </div>
     </section>
@@ -916,8 +1024,8 @@
     <section class="leadership-section">
         <div class="leadership-container">
             <div class="section-title">
-                <h2>Руководство</h2>
-                <p>Наша команда профессионалов</p>
+                <h2 data-translate="index_leadership_title">Руководство</h2>
+                <p data-translate="index_leadership_desc">Наша команда профессионалов</p>
             </div>
             <div class="leadership-grid">
                 <div class="leader-card">
@@ -1036,19 +1144,6 @@
             navLinks.classList.toggle('active');
         }
 
-        function switchLanguage(lang) {
-            // Убираем активный класс со всех кнопок
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Добавляем активный класс к выбранной кнопке
-            event.target.classList.add('active');
-            
-            // Здесь можно добавить логику переключения языка
-            console.log('Переключен язык на:', lang);
-        }
-
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
@@ -1083,6 +1178,31 @@
                 }
             });
         });
+
+        // Scroll to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+    <!-- Подключаем систему переводов -->
+    <script src="translations.js"></script>
 </body>
 </html>
